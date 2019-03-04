@@ -19,17 +19,21 @@ D_List=[]
 def setter():
     link=r'https://www.dropbox.com/s/qjdgnf6npiqymgs/data.7z?dl=1'
     d=downloader.Download(link, 'data.7z')
-    try:
-        d.download()
-    except:print('Could not download the database due to connection issue...')
+
     try:
         print('Trying to recover the data from data.7z file')
         Archive('data.7z').extractall('')
         print('Data retrival successful, program will now function normally...')
     except:
         print('Data retrival failed as data.7z was not found...')
-        print('Restart the program, with a proper internet connection...')
-        input('Enter to quit...')
+        print('Trying to download data.7z from internet')
+        try:
+            d.download()
+            Archive('data.7z').extractall('')
+        except:
+            print('Could not download the database due to connection issue...')
+            print('Restart the program, with a proper internet connection...')
+            input('Enter to quit...')
         sys.exit()
 
 
