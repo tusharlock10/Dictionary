@@ -1,8 +1,8 @@
-import sys, d
+import sys, dictionary
 
 
 args=sys.argv[1:]
 
 word=''.join(args)
 
-d.search_word(word)
+dictionary.search_word(word)
