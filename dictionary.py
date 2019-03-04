@@ -17,19 +17,22 @@ D_List=[]
 
 
 def setter():
+    dir_name=os.path.dirname(sys.argv[0])
     link=r'https://www.dropbox.com/s/qjdgnf6npiqymgs/data.7z?dl=1'
-    d=downloader.Download(link, 'data.7z')
+    data_file=os.path.join(dir_name, 'data.7z')
+
+    d=downloader.Download(link, data_file)
 
     try:
         print('Trying to recover the data from data.7z file')
-        Archive('data.7z').extractall('')
+        Archive(data_file).extractall(dir_name)
         print('Data retrival successful, program will now function normally...')
     except:
         print('Data retrival failed as data.7z was not found...')
         print('Trying to download data.7z from internet')
         try:
             d.download()
-            Archive('data.7z').extractall('')
+            Archive(data_file).extractall(dir_name)
         except:
             print('Could not download the database due to connection issue...')
             print('Restart the program, with a proper internet connection...')
@@ -124,6 +127,7 @@ def print_meanings(word,data):
         j+=1
         if j%2==0:
             print(to_print)
+            to_print=''
             L=[]
             choice=tj.instant_input().upper()
             if choice=='Q':
@@ -214,5 +218,7 @@ def add_new_word():
     D=json.dumps(D)
     f.write(D)
     f.close()
+
+    print('Word added successfully...')
 
     return word
