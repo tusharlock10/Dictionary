@@ -123,6 +123,7 @@ def main():
 
 ALL_ARGS=['--ADD', '-A', '--SEARCH', '-S','-D','--DOC', '-H','--HELP']
 args=sys.argv[1:]
+args=[i.upper() for i in args]
 
 if args==[]:
     arg='MAIN'
