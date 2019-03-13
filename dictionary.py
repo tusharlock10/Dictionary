@@ -3,13 +3,14 @@ import os
 from difflib import SequenceMatcher as SM
 import tj,sys
 from pyunpack import Archive
-import downloader
+try: import downloader
+except:pass
 
 FILE='D.json'
 
 
 cwd=os.path.dirname(__file__)
-os.chdir(cwd)
+if cwd!="":os.chdir(cwd)
 
 D={}
 D_List=[]
