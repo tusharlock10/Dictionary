@@ -32,14 +32,14 @@ def setter():
     except:
         print('Data retrival failed as data.7z was not found...')
         print('Trying to download data.7z from internet')
-        # try:
+        try:
             # d.download()
-        urllib.request.urlretrieve(link, data_file)
-        Archive(data_file).extractall(dir_name)
-        # except:
-        #     print('Could not download the database due to connection issue...')
-        #     print('Restart the program, with a proper internet connection...')
-        #     input('Enter to quit...')
+            urllib.request.urlretrieve(link, data_file)
+            Archive(data_file).extractall(dir_name)
+        except:
+            print('Could not download the database due to connection issue...')
+            print('Restart the program, with a proper internet connection...')
+            input('Enter to quit...')
         sys.exit()
 
 
