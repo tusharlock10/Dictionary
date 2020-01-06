@@ -3,7 +3,8 @@ import os
 from difflib import SequenceMatcher as SM
 import tj,sys
 from pyunpack import Archive
-import downloader
+# import downloader
+import urllib.request
 
 FILE='D.json'
 
@@ -20,8 +21,9 @@ def setter():
     dir_name=os.path.dirname(sys.argv[0])
     link=r'https://www.dropbox.com/s/qjdgnf6npiqymgs/data.7z?dl=1'
     data_file=os.path.join(dir_name, 'data.7z')
+    print("Data file is: ",data_file)
 
-    d=downloader.Download(link, data_file)
+    # d=downloader.Download(link, data_file)
 
     try:
         print('Trying to recover the data from data.7z file')
@@ -30,13 +32,14 @@ def setter():
     except:
         print('Data retrival failed as data.7z was not found...')
         print('Trying to download data.7z from internet')
-        try:
-            d.download()
-            Archive(data_file).extractall(dir_name)
-        except:
-            print('Could not download the database due to connection issue...')
-            print('Restart the program, with a proper internet connection...')
-            input('Enter to quit...')
+        # try:
+            # d.download()
+        urllib.request.urlretrieve(link, data_file)
+        Archive(data_file).extractall(dir_name)
+        # except:
+        #     print('Could not download the database due to connection issue...')
+        #     print('Restart the program, with a proper internet connection...')
+        #     input('Enter to quit...')
         sys.exit()
 
 
